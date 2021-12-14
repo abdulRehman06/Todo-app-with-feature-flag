@@ -67,26 +67,31 @@ export const todoSlice = createSlice({
 		{
 			id: nanoid(),
 			title: 'todo 1',
+			edit :  false,
 			completed: true,
 		},
 		{
 			id: nanoid(),
 			title: 'todo 2',
+			edit :  false,
 			completed: false,
 		},
 		{
 			id: nanoid(),
 			title: 'todo 3',
+			edit :  false,
 			completed: false,
 		},
 		{
 			id: nanoid(),
 			title: 'todo 4',
+			edit :  false,
 			completed: false,
 		},
 		{
 			id: nanoid(),
 			title: 'todo 5',
+			edit :  false,
 			completed: false,
 		},
 	],
@@ -106,6 +111,14 @@ export const todoSlice = createSlice({
 		},
 		deleteTodo: (state, action) => {
 			return state.filter((todo) => todo.id !== action.payload.id);
+		},
+		editTodo: (state, action) => {
+			console.log( `action:::`, action)
+		  state.map((todo) => (todo.id === action.payload.id ? todo.edit =  true :  todo ))
+		},
+		cancelEditTodo: (state, action) => {
+			// console.log( `action:::`, action)
+		  state.map((todo) => (todo.edit =  false ))
 		},
 	},
 	// extraReducers: {
@@ -127,6 +140,6 @@ export const todoSlice = createSlice({
 	// },
 });
 
-export const { addTodo, toggleComplete, deleteTodo } = todoSlice.actions;
+export const { addTodo, toggleComplete, deleteTodo  ,  editTodo ,  cancelEditTodo  } = todoSlice.actions;
 
 export default todoSlice.reducer;
